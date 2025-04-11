@@ -1,75 +1,86 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('photo_met.jpg'); /* Ваш фон */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('background_image.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
 }
 
 .heart {
-    width: 400px; /* Збільшено розмір серця */
+    width: 400px;
     height: 400px;
     background-color: red;
     position: relative;
     transform: rotate(-45deg);
-    animation: beat 2s infinite; /* Биття кожні 2 секунди */
+    animation: beat 2s infinite;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1; /* Щоб серце було нижче тексту */
+    z-index: 1;
 }
 
 .heart::before,
 .heart::after {
     content: '';
-    width: 400px; /* Такий самий розмір, як основа */
+    width: 400px;
     height: 400px;
     background-color: red;
     border-radius: 50%;
     position: absolute;
-    z-index: -1; /* Псевдоелементи під серцем і текстом */
+    z-index: -1;
 }
 
 .heart::before {
-    top: -200px; /* Зміщення вгору */
+    top: -200px;
     left: 0;
 }
 
 .heart::after {
-    left: 200px; /* Зміщення вправо */
+    left: 200px;
     top: 0;
 }
 
 .text {
     color: white;
     font-family: 'Dancing Script', cursive;
-    font-size: 40px; /* Збільшено розмір шрифту */
+    font-size: 40px;
     text-align: center;
-    transform: rotate(45deg); /* Компенсація повороту серця */
+    transform: rotate(45deg);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     position: relative;
-    z-index: 2; /* Текст поверх серця */
-    padding: 20px; /* Додано відступи, щоб текст не обрізався */
+    z-index: 2;
+    padding: 20px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 2s; /* Текст з’явиться через 2 секунди */
 }
 
 .text p {
-    margin: 5px 0; /* Відступи між рядками */
+    margin: 5px 0;
 }
 
-/* Анімація биття */
 @keyframes beat {
     0% {
         transform: scale(1) rotate(-45deg);
     }
     50% {
-        transform: scale(1.2) rotate(-45deg); /* Збільшення */
+        transform: scale(1.2) rotate(-45deg);
     }
     100% {
         transform: scale(1) rotate(-45deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
